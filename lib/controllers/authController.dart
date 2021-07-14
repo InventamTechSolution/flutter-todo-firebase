@@ -11,7 +11,8 @@ import 'package:todo_app/utils/root.dart';
 class AuthController extends GetxController
 {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<User> _firebaseUser = Rx<User>();
+  Rxn<User> _firebaseUser = Rxn<User>();
+
 
   // String get user=> _firebaseUser.value?.email;
   User get user => _firebaseUser.value;

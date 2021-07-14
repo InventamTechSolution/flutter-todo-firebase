@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
       initialBinding: AuthBinding(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.light(),
       home: Login(),
     );
   }

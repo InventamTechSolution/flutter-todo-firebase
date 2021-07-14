@@ -2,6 +2,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/user.dart';
 
 class Database{
@@ -29,5 +30,41 @@ class Database{
       rethrow;
     }
   }
+
+
+  Future<void> addTodo(String content, String uid) async {
+    try {
+      await _firebasefirestore
+          .collection("users")
+          .doc(uid)
+          .collection("todos")
+          .add({
+              'user_id':uid,
+              'created_date': Timestamp.now(),
+              'content': content,
+              'done': false,
+        });
+      } catch (e) {
+        print(e);
+        rethrow;
+      }
+  }
+
+  Stream<List<TodoModel>> todoStream(String uid) {
+    return _firebasefirestore
+        .collection("users")
+        .doc(uid)
+        .collection("todos")
+        .orderBy("dateCreated", descending: true)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<TodoModel> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(TodoModel.fromDocumetnSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
 
 }
