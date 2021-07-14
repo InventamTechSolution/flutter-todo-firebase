@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "485559067521",
+    "project_id": "todo-app-eb487",
+    "storage_bucket": "todo-app-eb487.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485559067521:android:d17bc12dd0c20960f3fe80",
+        "android_client_info": {
+          "package_name": "com.dipen.todo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485559067521-itanhpna949ha5cj2bpfam4oqo4t5384.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNWlcZ6wfe3MwCiINY8D0KeVnkdLO6_7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485559067521-itanhpna949ha5cj2bpfam4oqo4t5384.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
