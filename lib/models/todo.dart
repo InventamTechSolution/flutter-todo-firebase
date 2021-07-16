@@ -1,19 +1,33 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class TodoModel{
+
   String content;
   String todoId;
+  String title;
   Timestamp created_date;
   bool done;
 
-  TodoModel(this.content,this.todoId,this.created_date,this.done);
+  TodoModel(
+      this.content,
+      this.title,
+      this.todoId,
+      this.created_date,
+      this.done
+      );
 
-  TodoModel.fromDocumetnSnapshot(DocumentSnapshot doc){
-    todoId=doc.id;
-    content=doc['content'];
-    created_date=doc['created_date'];
-    done=doc['done'];
+
+  TodoModel.fromDocumentSnapshot(DocumentSnapshot documentsnapshot){
+
+    todoId=documentsnapshot.id;
+    title=documentsnapshot["title"];
+    content = documentsnapshot["content"];
+    created_date=documentsnapshot["created_date"];
+    done=documentsnapshot["done"];
   }
+
+
 }

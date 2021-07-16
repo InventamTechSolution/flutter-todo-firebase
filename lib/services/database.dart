@@ -32,7 +32,7 @@ class Database{
   }
 
 
-  Future<void> addTodo(String content, String uid) async {
+  Future<void> addTodo(String title,String content, String uid) async {
     try {
       await _firebasefirestore
           .collection("users")
@@ -41,6 +41,7 @@ class Database{
           .add({
               'user_id':uid,
               'created_date': Timestamp.now(),
+              'title':title,
               'content': content,
               'done': false,
         });
@@ -55,15 +56,33 @@ class Database{
         .collection("users")
         .doc(uid)
         .collection("todos")
-        .orderBy("dateCreated", descending: true)
+        .orderBy("created_date", descending: true) // dateCreated is an issue
         .snapshots()
         .map((QuerySnapshot query) {
       List<TodoModel> retVal = [];
+      // print('query: $query');
+      // print('uid: $uid');
+      // print('query.docs: ${query.docs}');
       query.docs.forEach((element) {
-        retVal.add(TodoModel.fromDocumetnSnapshot(element));
+        // print('TodoModel.fromDocumentSnapshot(element): ${TodoModel.fromDocumentSnapshot(element)}');
+        retVal.add(TodoModel.fromDocumentSnapshot(element));
       });
       return retVal;
     });
+  }
+
+  Future<void> updateTodo(bool newValue, String uid, String todoId) async {
+    try {
+      _firebasefirestore
+          .collection("users")
+          .doc(uid)
+          .collection("todos")
+          .doc(todoId)
+          .update({"done": newValue});
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
   }
 
 
